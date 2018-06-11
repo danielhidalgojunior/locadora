@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="Locadora.controls.MovieItemControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Locadora.controls"
+             xmlns:smtx="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="260" d:DesignWidth="200" Margin="8" MouseEnter="UserControl_MouseEnter" MouseLeave="UserControl_MouseLeave" RenderTransformOrigin="0.5,0.5">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="150"/>
+            <RowDefinition Height="43"/>
+            <RowDefinition Height="32"/>
+        </Grid.RowDefinitions>
+
+        <Rectangle Stroke="Black"/>
+        <TextBlock x:Name="txt_title" TextAlignment="Center" Text="" FontSize="14" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"></TextBlock>
+
+        <Image x:Name="img_movieImage" Grid.Row="1" Grid.RowSpan="2" Height="193" Width="200" Stretch="Fill" Cursor="Hand" MouseLeftButtonDown="Grid_MouseLeftButtonDown"></Image>
+
+        <Grid Grid.Row="3" Background="#FF131313"></Grid>
+        <Grid Grid.Row="3">
+            <Grid.Background>
+                <SolidColorBrush Color="Black" Opacity="0.15"/>
+            </Grid.Background>
+        </Grid>
+
+        <Border x:Name="container" Width="32" Height="32" Background="Red" CornerRadius="6" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="8 0 0 0">
+            <TextBlock x:Name="txt_age" Text="18" FontSize="20" Foreground="Black" HorizontalAlignment="Center" FontWeight="Bold" VerticalAlignment="Center"></TextBlock>
+        </Border>
+
+        <Border Grid.Row="2" Width="48" Height="26" HorizontalAlignment="Right" VerticalAlignment="Center" CornerRadius="4" Margin="0 0 8 0" Background="White">
+            <TextBlock x:Name="txt_year" Text="2013" FontSize="14" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"></TextBlock>
+        </Border>
+
+        <smtx:RatingBar x:Name="rating_moviescore" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Value="1" Foreground="#FFE4C500" MouseLeftButtonDown="rating_moviescore_MouseLeftButtonDown" IsHitTestVisible="False"/>
+    </Grid>
+</UserControl>

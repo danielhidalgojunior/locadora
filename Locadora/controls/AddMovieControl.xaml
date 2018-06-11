@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="Locadora.controls.AddMovieControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Locadora.controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="260" d:DesignWidth="200" Margin="8" Height="260" Width="200">
+    <Grid>
+        <Grid.Background>
+            <SolidColorBrush Color="#FF5D5D5D" Opacity="0.4"/>
+        </Grid.Background>
+
+        <Button Foreground="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Locadora;component/images/plus-math.png" Stretch="Uniform">
+                    <ImageBrush.RelativeTransform>
+                        <TransformGroup>
+                            <ScaleTransform CenterY="0.5" CenterX="0.5" ScaleX="0.7" ScaleY="0.7"/>
+                            <SkewTransform CenterY="0.5" CenterX="0.5"/>
+                            <RotateTransform CenterY="0.5" CenterX="0.5"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ImageBrush.RelativeTransform>
+                </ImageBrush>
+            </Button.Background>
+        </Button>
+
+    </Grid>
+</UserControl>

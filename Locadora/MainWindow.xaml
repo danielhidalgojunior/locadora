@@ -1,0 +1,88 @@
+﻿<Window x:Class="Locadora.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Locadora"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Locadora" Height="585" Width="966" Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid x:Name="MainGrid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GridSplitter Grid.Row="2" Height="10" HorizontalAlignment="Stretch" Background="#FF8B8B8B"/>
+
+        <Menu x:Name="menu" Grid.Row="0">
+            <MenuItem Header="Gerenciamento" Height="25">
+                <MenuItem Header="Funcionarios" Click="OpenEmployees"/>
+                <MenuItem Header="Gêneros" Click="OpenGenres"/>
+                <MenuItem Header="Clientes" Click="OpenClients"/>
+                <MenuItem Header="Retiradas" Click="OpenWithdraws"/>
+            </MenuItem>
+        </Menu>
+
+        <Grid Grid.Row="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <WrapPanel x:Name="wrap_movies" Margin="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Horizontal" ClipToBounds="True"></WrapPanel>
+            </ScrollViewer>
+        </Grid>
+
+
+        <Grid x:Name="grid_details" Visibility="Visible" Grid.Row="3" Background="#FF1D1D1D">
+
+            <Ellipse Height="48" Width="48" HorizontalAlignment="Center" Margin="8" MouseLeftButtonDown="Ellipse_MouseLeftButtonDown" VerticalAlignment="Top" Stroke="Black" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="images/arrow_down.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+
+            <Button x:Name="btn_remove" Content="Remover" Width="168" Height="32" HorizontalAlignment="Right" Margin="8" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FFF95050" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="RemoveMovie"/>
+            <Button x:Name="btn_edit" Content="Editar" Width="168" Height="32" HorizontalAlignment="Right" Margin="0,45,8,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FF5067F9" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="EditMovie"/>
+            <Button x:Name="btn_withdraw" Content="Retirar" Width="168" Height="32" HorizontalAlignment="Right" Margin="0,82,8,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FF67F950" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="btn_withdraw_Click"/>
+
+            <Image x:Name="img_details_img" Grid.Row="3" Width="200" Height="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16" Stretch="Fill"></Image>
+            <TextBlock HorizontalAlignment="Left" Margin="221,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Título:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,37,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Título original:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,58,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Fornecedor:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,79,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Data de lançamento:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,100,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Áudio:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,121,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Possúi legenda:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,142,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Formato de tela:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,163,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Classificação de idade:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,184,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Avaliação geral (0 a 5):" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,205,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Localização:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,226,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Gênero:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock HorizontalAlignment="Left" Margin="221,247,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Unidades:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+
+
+            <GroupBox Header="Elenco" HorizontalAlignment="Stretch" Height="213" Margin="8,271,8,0" Grid.Row="3" VerticalAlignment="Top" Foreground="#FFB4B4B4" BorderBrush="#FF5F5F5F">
+                <Grid>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Atores principais:" FontWeight="Bold" VerticalAlignment="Top" Margin="0,10,0,0"/>
+                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Demais atores:" FontWeight="Bold" VerticalAlignment="Top" Margin="0,80,0,0"/>
+                    <TextBlock x:Name="txt_mainactors" HorizontalAlignment="Left" Height="44" Margin="10,31,10,0" TextWrapping="Wrap" Text="x" VerticalAlignment="Top"/>
+                    <TextBlock x:Name="txt_sideactors" HorizontalAlignment="left" Height="80" Margin="10,101,10,0" TextWrapping="Wrap" Text="x" VerticalAlignment="Top"/>
+
+                </Grid>
+            </GroupBox>
+            <TextBlock x:Name="txt_title" HorizontalAlignment="Left" Margin="362,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_real_title" HorizontalAlignment="Left" Margin="362,37,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_provider" HorizontalAlignment="Left" Margin="362,58,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_releaseddate" HorizontalAlignment="Left" Margin="362,79,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_audiolanguage" HorizontalAlignment="Left" Margin="362,100,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_hassub" HorizontalAlignment="Left" Margin="362,121,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_screenformat" HorizontalAlignment="Left" Margin="362,142,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_agerating" HorizontalAlignment="Left" Margin="362,163,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_rating" HorizontalAlignment="Left" Margin="362,184,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_location" HorizontalAlignment="Left" Margin="362,205,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_genre" HorizontalAlignment="Left" Margin="362,226,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FFB4B4B4"/>
+            <TextBlock x:Name="txt_units" HorizontalAlignment="Left" Margin="362,247,0,0" Grid.Row="3" TextWrapping="Wrap" Text="x " VerticalAlignment="Top" Foreground="#FF7CFF6F"/>
+            <Rectangle HorizontalAlignment="Left" Height="247" Margin="354,16,0,0" Grid.Row="3" Stroke="Black" VerticalAlignment="Top" Width="2" Fill="White"/>
+        </Grid>
+
+    </Grid>
+</Window>
