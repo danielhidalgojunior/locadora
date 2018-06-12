@@ -109,11 +109,23 @@ namespace Locadora
 
         public static bool TryLogin(string login, string pw)
         {
-            var filter = Builders<EmployeeModel>.Filter.Eq(x => x.Login, login.ToLower());
+            try
+            {
+                var filter = Builders<EmployeeModel>.Filter.Eq(x => x.Login, login.ToLower());
 
-            var client = MongoConnection.employeecollection.Find(filter).Single();
+                var employee = MongoConnection.employeecollection.Find(filter).Single();
 
-            return client.Password == pw;
+                if (employee.Password == pw)
+                {
+                    LoggedEmployee = employee;
+                }
+
+                return employee.Password == pw;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public static void Initialize()

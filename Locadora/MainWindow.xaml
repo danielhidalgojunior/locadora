@@ -1,4 +1,4 @@
-﻿<Window x:Class="Locadora.MainWindow"
+﻿<Window x:Name="Main" x:Class="Locadora.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -22,7 +22,7 @@
                 <MenuItem Header="Funcionarios" Click="OpenEmployees"/>
                 <MenuItem Header="Gêneros" Click="OpenGenres"/>
                 <MenuItem Header="Clientes" Click="OpenClients"/>
-                <MenuItem Header="Retiradas" Click="OpenWithdraws"/>
+                <MenuItem Header="Retiradas" Click="OpenWithdrawsList"/>
             </MenuItem>
         </Menu>
 
@@ -43,7 +43,7 @@
 
             <Button x:Name="btn_remove" Content="Remover" Width="168" Height="32" HorizontalAlignment="Right" Margin="8" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FFF95050" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="RemoveMovie"/>
             <Button x:Name="btn_edit" Content="Editar" Width="168" Height="32" HorizontalAlignment="Right" Margin="0,45,8,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FF5067F9" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="EditMovie"/>
-            <Button x:Name="btn_withdraw" Content="Retirar" Width="168" Height="32" HorizontalAlignment="Right" Margin="0,82,8,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FF67F950" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="btn_withdraw_Click"/>
+            <Button x:Name="btn_withdraw" Content="Retirar" Width="168" Height="32" HorizontalAlignment="Right" Margin="0,82,8,0" VerticalAlignment="Top" BorderBrush="{x:Null}" Foreground="White" Background="#FF67F950" FontFamily="Consolas" FontSize="16" TextOptions.TextFormattingMode="Display" FontStretch="Condensed" Click="OpenWithdraws"/>
 
             <Image x:Name="img_details_img" Grid.Row="3" Width="200" Height="250" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="16" Stretch="Fill"></Image>
             <TextBlock HorizontalAlignment="Left" Margin="221,16,0,0" Grid.Row="3" TextWrapping="Wrap" Text="Título:" FontWeight="Bold" VerticalAlignment="Top" Foreground="#FFB4B4B4"/>

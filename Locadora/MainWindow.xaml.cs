@@ -82,7 +82,7 @@ namespace Locadora
             txt_agerating.Text = item.MovieModel.AgeRating.ToString();
             txt_audiolanguage.Text = item.MovieModel.Language;
             txt_genre.Text = item.MovieModel.Genre;
-            txt_hassub.Text = item.MovieModel.HasSubtitle.ToString();
+            txt_hassub.Text = item.MovieModel.HasSubtitle ? "Sim" : "Não";
             txt_location.Text = item.MovieModel.Location.ToString();
             txt_provider.Text = item.MovieModel.Provider;
             txt_rating.Text = item.MovieModel.Rating.ToString();
@@ -113,17 +113,6 @@ namespace Locadora
             obj.Stroke = new SolidColorBrush(Colors.Black);
         }
 
-        private void btn_withdraw_Click(object sender, RoutedEventArgs e)
-        {
-            winWithDraw win = new winWithDraw(SelectedMovie, MovieStoreManager.LoggedEmployee);
-            win.ShowDialog();
-
-            Task.Factory.StartNew(() =>
-            {
-                LoadMovieControls();
-            });
-        }
-
         private void OpenGenres(object sender, RoutedEventArgs e)
         {
             winManageGenre win = new winManageGenre();
@@ -144,7 +133,30 @@ namespace Locadora
 
         private void OpenWithdraws(object sender, RoutedEventArgs e)
         {
+            if(SelectedMovie.MovieModel.Units < 1)
+            {
+                MessageBox.Show("Não existem unidades disponíveis para este filme!", "Falta de unidades", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
 
+            winWithDraw win = new winWithDraw(SelectedMovie, MovieStoreManager.LoggedEmployee);
+            win.ShowDialog();
+
+            Task.Factory.StartNew(() =>
+            {
+                LoadMovieControls();
+            });
+        }
+
+        private void OpenWithdrawsList(object sender, RoutedEventArgs e)
+        {
+            winWithDraw win = new winWithDraw();
+            win.ShowDialog();
+
+            Task.Factory.StartNew(() =>
+            {
+                LoadMovieControls();
+            });
         }
 
         private void RemoveMovie(object sender, RoutedEventArgs e)
@@ -179,10 +191,9 @@ namespace Locadora
             grid_details.Visibility = Visibility.Collapsed;
             MainGrid.RowDefinitions[1].Height = new GridLength(Height);
 
-            Task.Factory.StartNew(() =>
-            {
-                LoadMovieControls();
-            });
+            LoadMovieControls();
+
+            ShowMovieDetails(SelectedMovie);
         }
     }
 }
