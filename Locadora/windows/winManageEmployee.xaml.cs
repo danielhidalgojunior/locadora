@@ -23,6 +23,9 @@ namespace Locadora.windows
     /// </summary>
     public partial class winManageEmployee : Window
     {
+        // Essa tela tem praticamente a mesma funcionalidade da de clientes
+
+
         ObservableCollection<EmployeeModel> Employees { get; set; }
         ObjectId SelectedId { get; set; }
         bool EditMode = false;
@@ -131,10 +134,6 @@ namespace Locadora.windows
             tab.SelectedIndex = 0;
 
             var row = (EmployeeModel)table.SelectedItem;
-
-            //string id = row.Id.ToString();
-
-            //var employee = MovieStoreManager.GetEmployee(id);
 
             SelectedId = (ObjectId)row.Id;
             SetupEditMode(row);

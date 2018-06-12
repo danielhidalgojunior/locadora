@@ -39,6 +39,7 @@ namespace Locadora.windows
             lb_genres.ItemsSource = MovieStoreManager.Genres.Genres;
         }
 
+        // Carrega as informações do modo de edição
         public void LoadFields()
         {
             txt_title.Text = SelectedMovie.MovieModel.Title;
@@ -67,6 +68,7 @@ namespace Locadora.windows
             ud_pos.Value = (byte)SelectedMovie.MovieModel.Location.Pos;
         }
 
+        // Adiciona atores principais
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             if(!lb_mains.Items.Contains(txt_main.Text) && txt_main.Text != null)
@@ -75,6 +77,7 @@ namespace Locadora.windows
             txt_main.Clear();
         }
 
+        // Duplo clique limpa a lista de atores
         private void ClearList(object sender, MouseButtonEventArgs e)
         {
             var obj = sender as ListBox;
@@ -82,6 +85,7 @@ namespace Locadora.windows
             obj.Items.Clear();
         }
 
+        // Adiciona atores secundarios
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (!lb_others.Items.Contains(txt_other.Text) && txt_other.Text != null)
@@ -100,11 +104,13 @@ namespace Locadora.windows
             Save();
         }
 
+        // Gera uma avaliação aleatória de 0 a 5 para o filme (estrelas)
         private int GenerateRating()
         {
              return new Random(DateTime.Today.Second).Next(1, 5);
         }
 
+        // Salva informações no banco
         private void Save()
         {
             MovieModel movie = new MovieModel()

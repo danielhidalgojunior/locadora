@@ -36,30 +36,30 @@ namespace Locadora
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Deixa a barra de informações de filmes invisível por enquanto, já que nenhum filme foi selecionado
             grid_details.Visibility = Visibility.Collapsed;
             MainGrid.RowDefinitions[1].Height = new GridLength(Height);
 
+            // Carrega os filmes encontrados no banco de dados com uma função assíncrona para evitar travamento da interface do usuário
             Task.Factory.StartNew(() =>
             {
                 LoadMovieControls();
             });
         }
 
-        void CreateDirectories()
-        {
-            Directory.CreateDirectory(@"images");
-        }
-
         public void LoadMovieControls()
         {
+            // Isso irá limpar o container que guarda os filmes. Isso evita que os mesmos dupliquem
             wrap_movies.Dispatcher.BeginInvoke(new Action(delegate () {
                 wrap_movies.Children.Clear();
             }));
 
+            // Adiciona o primeiro Controle que é aquele botão gigante que permite adicionar um novo filme
             wrap_movies.Dispatcher.BeginInvoke(new Action(delegate () {
                 wrap_movies.Children.Add(new AddMovieControl());
             }));
 
+            // Um loop para ir adicionando dentro do container os filmes que foram carregados na lista de filmes
             foreach (var movie in MovieStoreManager.Movies)
             {
                 wrap_movies.Dispatcher.BeginInvoke(new Action(delegate () {
@@ -68,13 +68,16 @@ namespace Locadora
             }
         }
 
+        // Essa função irá trazer a barra de informaões do filme para cima, fazendo ela tampar quase que pela a janela principal
         public void ShowMovieDetails(MovieItem item)
         {
+            // Guarda numa variavél qual filme foi selecionado
             SelectedMovie = item;
 
             grid_details.Visibility = Visibility.Visible;
             MainGrid.RowDefinitions[1].Height = new GridLength(150);
 
+            // Preenche os campos com as informações encontradas na variavel Item, que foi o filme selecionado através do click
             img_details_img.Source = item.Img;
 
             txt_title.Text = item.MovieModel.Title;
@@ -93,6 +96,7 @@ namespace Locadora
             txt_sideactors.Text = item.MovieModel.Cast.GetOthers();
         }
 
+        // Evento de click do botão que irá fazer a barra de informações suma até que outro filme seja selecionado
         private void Ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             grid_details.Visibility = Visibility.Collapsed;
@@ -113,26 +117,31 @@ namespace Locadora
             obj.Stroke = new SolidColorBrush(Colors.Black);
         }
 
+        // Evento que vai abrir a tela de controle de gêneros
         private void OpenGenres(object sender, RoutedEventArgs e)
         {
             winManageGenre win = new winManageGenre();
             win.ShowDialog();
         }
 
+        // Abre a tela de controle de clientes
         private void OpenClients(object sender, RoutedEventArgs e)
         {
             winManageClient win = new winManageClient();
             win.ShowDialog();
         }
 
+        // Abre a tela de controle de funcionários
         private void OpenEmployees(object sender, RoutedEventArgs e)
         {
             winManageEmployee win = new winManageEmployee();
             win.ShowDialog();
         }
 
+        // Abre a tela de controle de retiradas (alugar filme)
         private void OpenWithdraws(object sender, RoutedEventArgs e)
         {
+            // Mostrará mensagem de erro caso não tenha unidades disponíveis do filme selecionado
             if(SelectedMovie.MovieModel.Units < 1)
             {
                 MessageBox.Show("Não existem unidades disponíveis para este filme!", "Falta de unidades", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -148,6 +157,7 @@ namespace Locadora
             });
         }
 
+        // Abre a tela de listagem de retiradas (com a parte de aluguel desativada, já que é possivel que nenhum filme tenha sido selecionado)
         private void OpenWithdrawsList(object sender, RoutedEventArgs e)
         {
             winWithDraw win = new winWithDraw();
@@ -159,6 +169,7 @@ namespace Locadora
             });
         }
 
+        // Evento que vai remover o filme selecionado
         private void RemoveMovie(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show(string.Format("Deseja realmente remover \"{0}\"?", SelectedMovie.MovieModel.Title), "Aviso", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.No)
@@ -183,6 +194,7 @@ namespace Locadora
             });
         }
 
+        // Abre a tela de edição para o filme
         private void EditMovie(object sender, RoutedEventArgs e)
         {
             WinManageMovie win = new WinManageMovie(SelectedMovie);

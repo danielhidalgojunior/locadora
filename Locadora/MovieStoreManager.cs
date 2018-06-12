@@ -12,6 +12,8 @@ namespace Locadora
 {
     public static class MovieStoreManager
     {
+        // Coração do sistema, aqui é onde tudo fica armazenado para seja usado em diversas telas diferentes
+
         public static EmployeeModel LoggedEmployee { get; set; }
 
         public static List<MovieModel> Movies { get; set; }
@@ -22,6 +24,7 @@ namespace Locadora
 
         public static bool Initialized = false;
 
+        // Carrega todos os filmes
         public static List<MovieModel> GetAllMovies()
         {
             try
@@ -36,6 +39,7 @@ namespace Locadora
             }
         }
 
+        // Carrega todos os Funcionarios
         public static List<EmployeeModel> GetAllEmployees()
         {
             try
@@ -50,21 +54,7 @@ namespace Locadora
             }
         }
 
-        public static EmployeeModel GetEmployee(string id)
-        {
-            var bsonid = new ObjectId(id);
-            try
-            {
-                var filter = Builders<EmployeeModel>.Filter.Eq(x => x.Id, bsonid);
-
-                return MongoConnection.employeecollection.Find(filter).Single();
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
+        // Carrega todos os alugueis e retiradas
         public static List<WithDrawModel> GetAllWithDraws()
         {
             try
@@ -79,6 +69,7 @@ namespace Locadora
             }
         }
 
+        // Carrega todos os generos
         public static GenreModel GetAllGenres()
         {
             try
@@ -93,6 +84,7 @@ namespace Locadora
             }
         }
 
+        // Carrega todos os clientes
         public static List<ClientModel> GetAllClients()
         {
             try
@@ -107,6 +99,7 @@ namespace Locadora
             }
         }
 
+        // Função que verifica as credenciais do funcionario para realizar login
         public static bool TryLogin(string login, string pw)
         {
             try
@@ -128,6 +121,7 @@ namespace Locadora
             }
         }
 
+        // Função que iniciliza as informações do banco
         public static void Initialize()
         {
             dynamic settings = JsonConfig.FromFile(@"config/config.json");
@@ -143,10 +137,10 @@ namespace Locadora
             MongoConnection.GetWithDrawCollection("withdraws");
 
             Movies = GetAllMovies();
-            Employees = GetAllEmployees();
-            WithDraws = GetAllWithDraws();
-            Genres = GetAllGenres();
-            Clients = GetAllClients();
+            //Employees = GetAllEmployees();
+            //WithDraws = GetAllWithDraws();
+            //Genres = GetAllGenres();
+            //Clients = GetAllClients();
 
             Initialized = true;
         }

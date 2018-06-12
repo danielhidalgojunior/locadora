@@ -22,6 +22,9 @@ namespace Locadora.windows
     /// </summary>
     public partial class winWithDraw : Window
     {
+        // Essa tela funciona de modo parecido com a de clientes e funcionários
+
+
         ObservableCollection<WithDrawModel> Withdraws { get; set; }
         MovieItem Movie { get; set; }
         EmployeeModel Employee { get; set; }
@@ -81,8 +84,10 @@ namespace Locadora.windows
 
             if (WithDrawModel.Save(withdraw))
             {
+                // Decrementa unidades disponíveis do filme
                 Movie.MovieModel.Units--;
 
+                // Realiza update do filme com as unidades novas
                 MovieModel.Replace(Movie.MovieModel);
                 MovieStoreManager.Movies = MovieStoreManager.GetAllMovies();
 
@@ -98,6 +103,7 @@ namespace Locadora.windows
             }
         }
 
+        // Ao abrir a tela, inicializar as informações na tabela e carrega a combobox com os clientes disponíveis
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             var clients = MovieStoreManager.GetAllClients();

@@ -50,6 +50,7 @@ namespace Locadora.controls
             main.ShowMovieDetails(Movie);
         }
 
+        // Faz o container do filme aumentar sua escala
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)
         {
             ScaleTransform scaleTransform1 = new ScaleTransform(1.05, 1.05);
@@ -57,6 +58,7 @@ namespace Locadora.controls
             RenderTransform = scaleTransform1;
         }
 
+        // Faz o container do filme diminuir sua escala
         private void UserControl_MouseLeave(object sender, MouseEventArgs e)
         {
             ScaleTransform scaleTransform1 = new ScaleTransform(1, 1);

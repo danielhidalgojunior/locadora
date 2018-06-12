@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 
 namespace Locadora.classes
 {
+    // Classe que controla o container onde ficam os filmes
     public class MovieItem
     {
         public MovieModel MovieModel { get; }

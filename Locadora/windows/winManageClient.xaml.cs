@@ -31,6 +31,7 @@ namespace Locadora.windows
             InitializeComponent();
         }
 
+        // Salva dados no banco
         private void Save(object sender, RoutedEventArgs e)
         {
             AddressModel am = new AddressModel()
@@ -74,12 +75,14 @@ namespace Locadora.windows
             UpdateTable();
         }
 
+        // atualiza a tabela
         private void UpdateTable()
         {
             Clients = new ObservableCollection<ClientModel>(MovieStoreManager.GetAllClients());
             table.ItemsSource = Clients;
         }
 
+        // Limpa as textboxes para uma possível nova inserção
         public void ClearTxts()
         {
             txt_name.Clear();
@@ -92,26 +95,24 @@ namespace Locadora.windows
             dt_birthdate.SelectedDate = null;
         }
 
+        // Duplo clique na linha de alguma tabela vai abrir a edição de dados do cliente
         private void table_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             tab.SelectedIndex = 0;
 
             var row = (ClientModel)table.SelectedItem;
 
-            //string id = row.Id.ToString();
-
-            //var employee = MovieStoreManager.GetEmployee(id);
-
             SelectedId = (ObjectId)row.Id;
             SetupEditMode(row);
         }
 
+        // Remove cliente
         private void Remove(object sender, RoutedEventArgs e)
         {
             if (ClientModel.Remove(SelectedId))
-                MessageBox.Show("Funcionário removido!");
+                MessageBox.Show("Cliente removido!");
             else
-                MessageBox.Show("Erro ao remover funcionário!");
+                MessageBox.Show("Erro ao remover Cliente!");
 
             EditMode = false;
             btn_add.Content = "Adicionar";
@@ -120,6 +121,7 @@ namespace Locadora.windows
             UpdateTable();
         }
 
+        // Prepara a tela para modo de edição
         private void SetupEditMode(ClientModel model)
         {
             txt_name.Text = model.Name;
@@ -136,15 +138,12 @@ namespace Locadora.windows
             EditMode = true;
         }
 
+        // Carrega a tabela com os clientes existentes 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Task.Factory.StartNew(() =>
-            {
-                Clients = new ObservableCollection<ClientModel>(MovieStoreManager.GetAllClients());
-                table.Dispatcher.BeginInvoke(new Action(delegate () {
-                    table.ItemsSource = Clients;
-                }));
-            });
+            var rawclients = MovieStoreManager.GetAllClients();
+            Clients = new ObservableCollection<ClientModel>(rawclients);
+            table.ItemsSource = Clients;
         }
     }
 }

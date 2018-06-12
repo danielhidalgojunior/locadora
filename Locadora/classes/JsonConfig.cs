@@ -11,6 +11,7 @@ namespace Locadora.classes
 {
     public static class JsonConfig
     {
+        // Carrega as informaões no arquivo de texto config.json
         public static JObject FromFile(string file)
         {
             var rawjson = File.ReadAllText(file);

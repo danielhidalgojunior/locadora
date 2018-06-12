@@ -24,18 +24,21 @@ namespace Locadora.windows
             InitializeComponent();
         }
 
-
+        // Tudo começa aqui. O usuário coloca seu login e senha e ao clicar no botão Entrar, passamos os valores das
+        // TextBoxes para a função MovieStoreManager.TryLogin, que retornará true caso a senha e login existam no banco de dados
         private void DoLogin(object sender, RoutedEventArgs e)
         {
             if (!MovieStoreManager.Initialized)
                 return;
 
+            // Armazenando as informações das texboxes
             string login = txt_login.Text;
             string pw = txt_pw.Text;
 
             if (MovieStoreManager.TryLogin(login, pw))
             {
                 MainWindow win = new MainWindow();
+                // Abre a Window inicial onde podemos começar as operações CRUD
                 win.Show();
                 win.Activate();
                 Close();
@@ -48,8 +51,10 @@ namespace Locadora.windows
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            // Executa trecho de código assíncrono para evitar bloqueio da interface gráfica
             Task.Factory.StartNew(() =>
             {
+                // Função que ira mapear e inicializar a conexão com banco de dados. É usada apenas uma vez
                 MovieStoreManager.Initialize();
             });
         }

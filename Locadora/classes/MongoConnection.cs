@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Locadora.classes
 {
+
+    // Classe para mapear algumas funções do mongodb
     public static class MongoConnection
     {
         public static MongoClient client { get; set; }

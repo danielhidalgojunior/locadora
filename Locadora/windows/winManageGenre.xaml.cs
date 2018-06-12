@@ -23,10 +23,13 @@ namespace Locadora.windows
     /// </summary>
     public partial class winManageGenre : Window
     {
+        // Define os gêneros para os filmes usando combobox's
+
         public winManageGenre()
         {
             InitializeComponent();
 
+            MovieStoreManager.Genres = MovieStoreManager.GetAllGenres();
             MovieStoreManager.Genres.Genres.ForEach(x => lb_genres.Items.Add(x));
         }
 
