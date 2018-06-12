@@ -41,7 +41,6 @@ namespace Locadora
 
             Task.Factory.StartNew(() =>
             {
-                MovieStoreManager.Initialize();
                 LoadMovieControls();
             });
         }
@@ -133,7 +132,8 @@ namespace Locadora
 
         private void OpenClients(object sender, RoutedEventArgs e)
         {
-
+            winManageClient win = new winManageClient();
+            win.ShowDialog();
         }
 
         private void OpenEmployees(object sender, RoutedEventArgs e)
