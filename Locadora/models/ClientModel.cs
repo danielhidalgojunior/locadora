@@ -27,11 +27,16 @@ namespace Locadora.models
         [BsonElement("straddress")]
         public string StrAddress { get; set; }
 
-        public static bool Save(ClientModel movie)
+        public override string ToString()
+        {
+            return Name;
+        }
+
+        public static bool Save(ClientModel client)
         {
             try
             {
-                MongoConnection.clientcollection.InsertOneAsync(movie);
+                MongoConnection.clientcollection.InsertOneAsync(client);
                 return true;
             }
             catch (Exception)

@@ -43,6 +43,11 @@ namespace Locadora.models
         [BsonElement("location")]
         public LocationModel Location { get; set; }
 
+        public override string ToString()
+        {
+            return Title;
+        }
+
         public static void Save(MovieModel movie)
         {
             try
