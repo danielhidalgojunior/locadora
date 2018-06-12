@@ -46,7 +46,8 @@ namespace Locadora.controls
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            (Application.Current.MainWindow as MainWindow).ShowMovieDetails(Movie);
+            var main = Window.GetWindow(this) as MainWindow;
+            main.ShowMovieDetails(Movie);
         }
 
         private void UserControl_MouseEnter(object sender, MouseEventArgs e)
