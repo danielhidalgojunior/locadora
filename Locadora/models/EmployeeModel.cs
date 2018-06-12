@@ -32,8 +32,6 @@ namespace Locadora.models
         public DateTime HiringDate { get; set; }
         [BsonElement("salary")]
         public double Salary { get; set; }
-        [BsonElement("straddress")]
-        public string StrAddress { get; set; }
 
         public static bool Save(EmployeeModel client)
         {
@@ -57,7 +55,7 @@ namespace Locadora.models
                 MongoConnection.employeecollection.DeleteOne(filter);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -72,7 +70,7 @@ namespace Locadora.models
                 MongoConnection.employeecollection.ReplaceOne(filter, employee);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;

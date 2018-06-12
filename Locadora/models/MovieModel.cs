@@ -69,7 +69,7 @@ namespace Locadora.models
                 MongoConnection.moviecollection.DeleteOne(filter);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -84,7 +84,7 @@ namespace Locadora.models
                 MongoConnection.moviecollection.ReplaceOne(filter, movie);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;

@@ -28,7 +28,7 @@ namespace Locadora.classes
 
                 db = client.GetDatabase(database);
             }
-            catch (Exception ex)
+            catch 
             {
                 
             }
@@ -40,7 +40,7 @@ namespace Locadora.classes
             {
                 moviecollection = db.GetCollection<MovieModel>(coll);
             }
-            catch (Exception ex)
+            catch 
             {
                 
             }
@@ -52,7 +52,7 @@ namespace Locadora.classes
             {
                 withdrawcollection = db.GetCollection<WithDrawModel>(coll);
             }
-            catch (Exception ex)
+            catch 
             {
 
             }
@@ -64,7 +64,7 @@ namespace Locadora.classes
             {
                 employeecollection = db.GetCollection<EmployeeModel>(coll);
             }
-            catch (Exception ex)
+            catch 
             {
 
             }
@@ -76,7 +76,7 @@ namespace Locadora.classes
             {
                 clientcollection = db.GetCollection<ClientModel>(coll);
             }
-            catch (Exception ex)
+            catch 
             {
 
             }
@@ -88,7 +88,7 @@ namespace Locadora.classes
             {
                 genrecollection = db.GetCollection<GenreModel>(coll);
             }
-            catch (Exception ex)
+            catch 
             {
 
             }

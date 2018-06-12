@@ -47,8 +47,7 @@ namespace Locadora.windows
                 Address = am,
                 Email = txt_email.Text.ToLower(),
                 Phone = txt_phone.Text.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", ""),
-                BirthDate = (DateTime)dt_birthdate.SelectedDate,
-                StrAddress = string.Format("{0}, bairro {1}, rua {2}, número {3}", am.City, am.District, am.Street, am.Number)
+                BirthDate = (DateTime)dt_birthdate.SelectedDate
             };
 
             if (!EditMode)

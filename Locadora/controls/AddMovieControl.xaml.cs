@@ -30,6 +30,9 @@ namespace Locadora.controls
         {
             WinManageMovie win = new WinManageMovie();
             win.ShowDialog();
+
+            var main = Window.GetWindow(this) as MainWindow;
+            main.LoadMovieControls();
         }
     }
 }

@@ -17,5 +17,10 @@ namespace Locadora.models
         public string Street { get; set; }
         [BsonElement("number")]
         public int Number { get; set; }
+
+        public override string ToString()
+        {
+            return string.Format("{0}, bairro {1}, rua {2}, número {3}",City, District, Street, Number);
+        }
     }
 }

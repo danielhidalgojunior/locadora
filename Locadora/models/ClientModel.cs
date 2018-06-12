@@ -24,8 +24,6 @@ namespace Locadora.models
         public string Phone { get; set; }
         [BsonElement("email")]
         public string Email { get; set; }
-        [BsonElement("straddress")]
-        public string StrAddress { get; set; }
 
         public override string ToString()
         {
@@ -54,7 +52,7 @@ namespace Locadora.models
                 MongoConnection.clientcollection.DeleteOne(filter);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;
@@ -69,7 +67,7 @@ namespace Locadora.models
                 MongoConnection.clientcollection.ReplaceOne(filter, employee);
                 return true;
             }
-            catch (Exception ex)
+            catch 
             {
 
                 throw;

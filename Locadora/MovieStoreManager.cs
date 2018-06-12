@@ -87,7 +87,7 @@ namespace Locadora
 
                 return MongoConnection.genrecollection.Find(filter).Single();
             }
-            catch(Exception ex)
+            catch
             {
                 return null;
             }
@@ -122,7 +122,7 @@ namespace Locadora
 
                 return employee.Password == pw;
             }
-            catch
+            catch(Exception ex)
             {
                 return false;
             }

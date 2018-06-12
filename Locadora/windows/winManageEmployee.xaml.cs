@@ -67,7 +67,6 @@ namespace Locadora.windows
                 Role = txt_role.Text.ToLower(),
                 BirthDate = (DateTime)dt_birthdate.SelectedDate,
                 HiringDate = (DateTime)dt_hiringdate.SelectedDate,
-                StrAddress = string.Format("{0}, bairro {1}, rua {2}, número {3}", am.City, am.District, am.Street, am.Number),
                 Password = txt_password.Password,
                 Salary = Convert.ToInt32(txt_salary.Text)
             };
@@ -125,16 +124,6 @@ namespace Locadora.windows
             btn_remove.Visibility = Visibility.Visible;
             btn_add.Content = "Atualizar";
             EditMode = true;
-        }
-
-        private void table_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
-        {
-            PropertyDescriptor propertyDescriptor = (PropertyDescriptor)e.PropertyDescriptor;
-            e.Column.Header = propertyDescriptor.DisplayName;
-            if (propertyDescriptor.DisplayName == "Address")
-            {
-                e.Cancel = true;
-            }
         }
 
         private void table_MouseDoubleClick(object sender, MouseButtonEventArgs e)

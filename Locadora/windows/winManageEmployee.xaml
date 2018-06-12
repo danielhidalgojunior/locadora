@@ -52,7 +52,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="table" Margin="8" IsReadOnly="True" MouseDoubleClick="table_MouseDoubleClick"/>
+                    <DataGrid x:Name="table" Margin="8" MouseDoubleClick="table_MouseDoubleClick"/>
                 </Grid>
             </TabItem>
         </TabControl>
