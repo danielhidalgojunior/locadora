@@ -41,7 +41,7 @@
             </TabItem>
             <TabItem Header="Listar">
                 <Grid>
-                    <DataGrid x:Name="table" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8" MouseDoubleClick="table_MouseDoubleClick"></DataGrid>
+                    <DataGrid x:Name="table" IsReadOnly="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8" MouseDoubleClick="table_MouseDoubleClick"></DataGrid>
                 </Grid>
             </TabItem>
 
