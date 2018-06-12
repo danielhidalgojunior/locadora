@@ -20,6 +20,8 @@ namespace Locadora
         public static GenreModel Genres { get; set; }
         public static List<ClientModel> Clients { get; set; }
 
+        public static bool Initialized = false;
+
         public static List<MovieModel> GetAllMovies()
         {
             try
@@ -105,9 +107,13 @@ namespace Locadora
             }
         }
 
-        public static bool TryLogin(string user, string pw)
+        public static bool TryLogin(string login, string pw)
         {
-            return true;
+            var filter = Builders<EmployeeModel>.Filter.Eq(x => x.Login, login.ToLower());
+
+            var client = MongoConnection.employeecollection.Find(filter).Single();
+
+            return client.Password == pw;
         }
 
         public static void Initialize()
@@ -129,6 +135,8 @@ namespace Locadora
             WithDraws = GetAllWithDraws();
             Genres = GetAllGenres();
             Clients = GetAllClients();
+
+            Initialized = true;
         }
     }
 }
