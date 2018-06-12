@@ -112,7 +112,12 @@ namespace Locadora
 
         public static void Initialize()
         {
-            MongoConnection.NewConnection("mongodb://admin:admin12@ds247670.mlab.com:47670/locadora", "locadora");
+            dynamic settings = JsonConfig.FromFile(@"config/config.json");
+            string dbhost = (string)settings["databasehost"];
+            string dbname = (string)settings["databasename"];
+
+
+            MongoConnection.NewConnection(dbhost, dbname);
             MongoConnection.GetMovieCollection("movies");
             MongoConnection.GetClientCollection("clients");
             MongoConnection.GetEmployeeCollection("employees");
