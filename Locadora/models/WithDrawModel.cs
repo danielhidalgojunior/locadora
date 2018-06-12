@@ -12,16 +12,30 @@ namespace Locadora.models
     public class WithDrawModel
     {
         [BsonId]
-        public BsonObjectId Id = ObjectId.GenerateNewId();
+        public BsonObjectId Id { get; set; } = ObjectId.GenerateNewId();
         [BsonElement("movie_title")]
         public string MovieTitle { get; set; }
-        [BsonId]
+        [BsonElement("clientid")]
         public BsonObjectId ClientId { get; set; }
         [BsonElement("withdrawdate")]
         public DateTime WithDrawDate { get; set; }
         [BsonElement("withdrawreturn")]
         public DateTime WithDrawReturn { get; set; }
-        [BsonId]
+        [BsonElement("employeeid")]
         public BsonObjectId Employee { get; set; }
+
+        public static bool Save(WithDrawModel withdraw)
+        {
+            try
+            {
+                MongoConnection.withdrawcollection.InsertOneAsync(withdraw);
+                return true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
     }
 }
