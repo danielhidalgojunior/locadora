@@ -52,10 +52,11 @@ namespace Locadora.windows
             txt_language.Text = SelectedMovie.MovieModel.Language;
             cb_hassubtitle.IsChecked = SelectedMovie.MovieModel.HasSubtitle;
 
-            txt_screenformatw.Text = SelectedMovie.MovieModel.ScreenFormat.Split(':')[0];
-            txt_screenformath.Text = SelectedMovie.MovieModel.ScreenFormat.Split(':')[1];
+            var screenformat = SelectedMovie.MovieModel.ScreenFormat.Split(':');
+            txt_screenformath.Text = screenformat[0];
+            txt_screenformatw.Text = screenformat[1];
 
-            lb_agerating.SelectedValue = SelectedMovie.MovieModel.AgeRating;
+            lb_agerating.Text = SelectedMovie.MovieModel.AgeRating.ToString();
 
             txt_img.Text = SelectedMovie.MovieModel.ImgPath;
             lb_genres.SelectedItem = SelectedMovie.MovieModel.Genre;
