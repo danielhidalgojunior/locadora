@@ -35,11 +35,11 @@ namespace Locadora.models
         [BsonElement("straddress")]
         public string StrAddress { get; set; }
 
-        public static bool Save(EmployeeModel movie)
+        public static bool Save(EmployeeModel client)
         {
             try
             {
-                MongoConnection.employeecollection.InsertOneAsync(movie);
+                MongoConnection.employeecollection.InsertOneAsync(client);
                 return true;
             }
             catch (Exception)
