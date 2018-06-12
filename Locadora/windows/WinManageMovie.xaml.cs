@@ -35,8 +35,6 @@ namespace Locadora.windows
                 EditMode = true;
                 btn_add.Content = "Atualizar";
             }
-
-            lb_genres.ItemsSource = MovieStoreManager.Genres.Genres;
         }
 
         // Carrega as informações do modo de edição
@@ -60,7 +58,10 @@ namespace Locadora.windows
             lb_agerating.Text = SelectedMovie.MovieModel.AgeRating.ToString();
 
             txt_img.Text = SelectedMovie.MovieModel.ImgPath;
-            lb_genres.SelectedItem = SelectedMovie.MovieModel.Genre;
+
+            lb_genres.ItemsSource = MovieStoreManager.Genres.Genres;
+            lb_genres.SelectedValue = SelectedMovie.MovieModel.Genre;
+
             ud_units.Value = (byte)SelectedMovie.MovieModel.Units;
 
             txt_stand.Text = SelectedMovie.MovieModel.Location.Stand.ToString();

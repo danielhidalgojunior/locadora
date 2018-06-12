@@ -12,7 +12,7 @@
             <Grid>
                 <TextBlock Text="Login" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,15,0,0" Foreground="White"></TextBlock>
                 <TextBox x:Name="txt_login" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" Margin="12 32 12 0"></TextBox>
-                <TextBox x:Name="txt_pw" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" Margin="12,74,12,0"></TextBox>
+                <PasswordBox x:Name="txt_pw" VerticalAlignment="Top" HorizontalAlignment="Stretch" Height="25" Margin="12,74,12,0"></PasswordBox>
                 <TextBlock Text="Senha" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="12,57,0,0" Foreground="White"/>
             </Grid>
         </Border>

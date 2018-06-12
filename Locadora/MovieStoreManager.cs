@@ -139,7 +139,7 @@ namespace Locadora
             Movies = GetAllMovies();
             //Employees = GetAllEmployees();
             //WithDraws = GetAllWithDraws();
-            //Genres = GetAllGenres();
+            Genres = GetAllGenres();
             //Clients = GetAllClients();
 
             Initialized = true;

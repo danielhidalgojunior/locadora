@@ -124,6 +124,8 @@ namespace Locadora
         {
             winManageGenre win = new winManageGenre();
             win.ShowDialog();
+
+            cb_genres.ItemsSource = MovieStoreManager.GetAllGenres().Genres;
         }
 
         // Abre a tela de controle de clientes

@@ -33,7 +33,7 @@ namespace Locadora.windows
 
             // Armazenando as informações das texboxes
             string login = txt_login.Text;
-            string pw = txt_pw.Text;
+            string pw = txt_pw.Password;
 
             if (MovieStoreManager.TryLogin(login, pw))
             {
