@@ -6,35 +6,42 @@
         xmlns:local="clr-namespace:Locadora.windows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Controle de clientes" Height="453.383" Width="563.158">
+        Title="Controle de clientes" Height="507.383" Width="563.158" Loaded="Window_Loaded">
     <Grid>
-        <TabControl HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <TabControl x:Name="tab" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <TabItem Header="Cadastro">
                 <Grid>
                     <TextBlock Text="Nome:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,0,0"></TextBlock>
                     <TextBox x:Name="txt_name" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,31, 10, 0"/>
                     <TextBlock Text="Data de nascimento:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,70,0,0"></TextBlock>
-                    <DatePicker x:Name="dt_birthdate" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,90,376,0"/>
+                    <DatePicker x:Name="dt_birthdate" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,90,376,0"/>
                     <GroupBox Header="Endereço" HorizontalAlignment="Left" Height="155" VerticalAlignment="Top" Width="498" Margin="10,118,0,0">
                         <Grid>
                             <TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="Cidade:" VerticalAlignment="Top"/>
-                            <TextBox x:Name="txt_cidade" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+                            <TextBox x:Name="txt_city" HorizontalAlignment="Left" Height="23" Margin="10,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                             <TextBlock HorizontalAlignment="Left" Margin="10,65,0,0" TextWrapping="Wrap" Text="Bairro:" VerticalAlignment="Top"/>
-                            <TextBox x:Name="txt_cidade_Copy" HorizontalAlignment="Left" Height="23" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
+                            <TextBox x:Name="txt_district" HorizontalAlignment="Left" Height="23" Margin="10,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="177"/>
                             <TextBlock HorizontalAlignment="Left" Margin="270,10,0,0" TextWrapping="Wrap" Text="Rua:" VerticalAlignment="Top"/>
-                            <TextBox x:Name="txt_cidade_Copy1" HorizontalAlignment="Left" Height="23" Margin="270,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
+                            <TextBox x:Name="txt_street" HorizontalAlignment="Left" Height="23" Margin="270,31,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="206"/>
                             <TextBlock HorizontalAlignment="Left" Margin="270,65,0,0" TextWrapping="Wrap" Text="Número:" VerticalAlignment="Top"/>
-                            <TextBox x:Name="txt_cidade_Copy2" HorizontalAlignment="Left" Height="23" Margin="270,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
+                            <TextBox x:Name="txt_number" HorizontalAlignment="Left" Height="23" Margin="270,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
 
                         </Grid>
                     </GroupBox>
                     <TextBlock Text="Telefone:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,280,0,0"/>
                     <xctk:MaskedTextBox x:Name="txt_phone" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,301,419,0" Mask="(99) 09999-9999"/>
+
+                    <Rectangle Height="48" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Fill="DarkSlateGray"></Rectangle>
+                    <Button x:Name="btn_add" Width="128" Height="32" Content="Adicionar" FontSize="14" FontFamily="Consolas" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="8" Background="#FF55D13A" BorderBrush="{x:Null}" Click="Save"></Button>
+                    <Button x:Name="btn_remove" Width="128" Height="32" Content="Remover" FontSize="14" FontFamily="Consolas" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="8" Background="#FFD1413A" BorderBrush="{x:Null}" Visibility="Collapsed" Click="Remove"></Button>
+                    <TextBlock Text="E-mail:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,334,0,0"/>
+                    <TextBox x:Name="txt_email" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="10,355,197,0"/>
+
                 </Grid>
             </TabItem>
             <TabItem Header="Listar">
                 <Grid>
-
+                    <DataGrid x:Name="table" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8" MouseDoubleClick="table_MouseDoubleClick"></DataGrid>
                 </Grid>
             </TabItem>
 
