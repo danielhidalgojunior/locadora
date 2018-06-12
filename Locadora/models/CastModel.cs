@@ -33,5 +33,12 @@ namespace Locadora.models
 
             return str;
         }
+
+        public bool ContainsActor(string actor)
+        {
+            var list = Main.Concat(Others).ToList();
+
+            return list.Contains(actor);
+        }
     }
 }

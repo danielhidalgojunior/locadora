@@ -10,7 +10,7 @@
     <Grid x:Name="MainGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="25"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -26,7 +26,18 @@
             </MenuItem>
         </Menu>
 
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="64" Background="#FFD1D1D1">
+            <TextBlock Text="Nome do filme:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,38"></TextBlock>
+            <TextBox x:Name="txt_filtername" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="256" Height="25" Margin="10,0,0,8"></TextBox>
+            <TextBlock Text="Ator:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="312,0,0,38"/>
+            <TextBox x:Name="txt_filteractor" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="177" Height="25" Margin="312,0,0,8"/>
+            <TextBlock Text="Gênero:" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="534,0,0,38"/>
+            <ComboBox x:Name="cb_genres" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="177" Height="25" Margin="534,0,0,8"/>
+
+            <Button x:Name="btn_query" HorizontalAlignment="Right" Content="Pesquisar" VerticalAlignment="Bottom" Width="86" Height="25" Margin="8" Background="#FF303030" BorderBrush="{x:Null}" Foreground="White" Click="QueryMovies"></Button>
+        </Grid>
+
+        <Grid Grid.Row="1" Margin="0 64 0 0">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <WrapPanel x:Name="wrap_movies" Margin="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Orientation="Horizontal" ClipToBounds="True"></WrapPanel>
             </ScrollViewer>

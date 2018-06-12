@@ -45,6 +45,8 @@ namespace Locadora
             {
                 LoadMovieControls();
             });
+
+            cb_genres.ItemsSource = MovieStoreManager.GetAllGenres().Genres;
         }
 
         public void LoadMovieControls()
@@ -206,6 +208,41 @@ namespace Locadora
             LoadMovieControls();
 
             ShowMovieDetails(SelectedMovie);
+        }
+
+        private void QueryMovies(object sender, RoutedEventArgs e)
+        {
+            List<MovieModel> filteredmovies = MovieStoreManager.GetAllMovies();
+
+            if (txt_filtername.Text != "")
+            {
+                if (filteredmovies == null)
+                    filteredmovies = MovieStoreManager.GetAllMovies();
+
+                filteredmovies = filteredmovies.Where(x => x.Title.Contains(txt_filtername.Text)).ToList();
+            }
+
+            if (txt_filteractor.Text != "")
+            {
+                if (filteredmovies == null)
+                    filteredmovies = MovieStoreManager.GetAllMovies();
+
+                filteredmovies = filteredmovies.Where(x => x.Cast.ContainsActor(txt_filteractor.Text)).ToList();
+            }
+            
+            if (cb_genres.SelectedIndex != -1)
+            {
+                if ((string)cb_genres.SelectedValue != "*")
+                {
+                    if (filteredmovies == null)
+                        filteredmovies = MovieStoreManager.GetAllMovies();
+
+                    filteredmovies = filteredmovies.Where(x => x.Genre == (string)cb_genres.SelectedValue).ToList();
+                }
+            }
+
+            MovieStoreManager.Movies = filteredmovies;
+            LoadMovieControls();
         }
     }
 }
